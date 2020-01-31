@@ -1,8 +1,8 @@
 import 'package:cinematic_clone/src/bloc/home_bloc.dart';
-import 'package:cinematic_clone/src/utils/api_client.dart';
+import 'package:cinematic_clone/src/repository/movie_repository.dart';
 import 'package:flutter/material.dart';
 
-import 'movie_tab.dart';
+import 'movie_list.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -12,7 +12,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   PageController _pageController;
   int _page = 0;
-  HomeBloc _homeBloc = HomeBloc(ApiClient());
+  HomeBloc _homeBloc = HomeBloc(MovieRepository());
 
   @override
   Widget build(BuildContext context) {
@@ -55,9 +55,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   List<Widget> _getMovieTab() {
     return <Widget>[
-      MovieTab(_homeBloc, "popular", key: Key("movies-popular")),
-      MovieTab(_homeBloc, "upcoming", key: Key("movies-upcoming")),
-      MovieTab(_homeBloc, "top_rated", key: Key("movies-top_rated")),
+      MovieList(_homeBloc, "popular", key: Key("movies-popular")),
+      MovieList(_homeBloc, "upcoming", key: Key("movies-upcoming")),
+      MovieList(_homeBloc, "top_rated", key: Key("movies-top_rated")),
     ];
   }
 
@@ -76,5 +76,6 @@ class _HomeScreenState extends State<HomeScreen> {
   void dispose() {
     super.dispose();
     _pageController.dispose();
+    _homeBloc.dispose();
   }
 }

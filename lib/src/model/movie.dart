@@ -20,16 +20,15 @@ class Movie {
         : DateTime.parse(releaseDate).year;
   }
 
-  Movie.fromMap(Map<String, dynamic> jsonMap) :
-    id = jsonMap["id"].toInt(),
-    voteAverage = jsonMap["vote_average"].toDouble(),
-    title = jsonMap["title"],
-    posterPath = jsonMap["poster_path"] ?? "",
-    backdropPath = jsonMap["backdrop_path"] ?? "",
-    overview = jsonMap["overview"],
-    releaseDate = jsonMap["release_date"],
-    genreIds = (jsonMap["genre_ids"] as List<dynamic>)
-        .map<int>((value) => value.toInt())
-        .toList();
-
+  Movie.fromMap(Map<String, dynamic> jsonMap)
+      : id = jsonMap["id"].toInt(),
+        voteAverage = jsonMap["vote_average"].toDouble(),
+        title = jsonMap["title"],
+        posterPath = jsonMap["poster_path"] ?? "",
+        backdropPath = jsonMap["backdrop_path"] ?? "",
+        overview = jsonMap["overview"],
+        releaseDate = jsonMap["release_date"],
+        genreIds = (jsonMap["genre_ids"] as List<dynamic>)
+            .map<int>((value) => value.toInt())
+            .toList();
 }
