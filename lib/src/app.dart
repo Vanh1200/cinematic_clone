@@ -8,6 +8,7 @@ class MyApp extends StatelessWidget {
       title: 'Cinematic clone',
       theme: ThemeData.dark(),
       home: HomeScreen(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
