@@ -173,7 +173,7 @@
         <entry key="provider">
           <value>
             <list>
-              <option value="D:/flutter/.pub-cache/hosted/pub.dartlang.org/provider-4.0.1/lib" />
+              <option value="D:/flutter/.pub-cache/hosted/pub.dartlang.org/provider-4.0.2/lib" />
             </list>
           </value>
         </entry>
@@ -300,7 +300,7 @@
       <root url="file://D:/flutter/.pub-cache/hosted/pub.dartlang.org/path-1.6.4/lib" />
       <root url="file://D:/flutter/.pub-cache/hosted/pub.dartlang.org/pedantic-1.8.0+1/lib" />
       <root url="file://D:/flutter/.pub-cache/hosted/pub.dartlang.org/petitparser-2.4.0/lib" />
-      <root url="file://D:/flutter/.pub-cache/hosted/pub.dartlang.org/provider-4.0.1/lib" />
+      <root url="file://D:/flutter/.pub-cache/hosted/pub.dartlang.org/provider-4.0.2/lib" />
       <root url="file://D:/flutter/.pub-cache/hosted/pub.dartlang.org/quiver-2.0.5/lib" />
       <root url="file://D:/flutter/.pub-cache/hosted/pub.dartlang.org/rxdart-0.23.1/lib" />
       <root url="file://D:/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences-0.4.3/lib" />

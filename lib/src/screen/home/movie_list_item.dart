@@ -1,4 +1,5 @@
 import 'package:cinematic_clone/src/model/movie.dart';
+import 'package:cinematic_clone/src/utils/navigator.dart';
 import 'package:cinematic_clone/src/utils/utils.dart';
 import 'package:flutter/material.dart';
 
@@ -88,6 +89,7 @@ class MovieListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: InkWell(
+        onTap: () => goToMovieDetails(context, movie),
         child: Column(
           children: <Widget>[
             Hero(

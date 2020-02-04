@@ -50,7 +50,9 @@ class _MovieListState extends State<MovieList>
               widget.homeBloc.fetchMovies(widget.category, page: ++_pageNumber);
             }
             if (index == snapshot.data.length)
-              return Center(child: CircularProgressIndicator(),);
+              return Center(
+                child: CircularProgressIndicator(),
+              );
             return MovieListItem(snapshot.data[index]);
           });
     } else {

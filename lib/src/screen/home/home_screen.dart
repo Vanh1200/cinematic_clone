@@ -1,6 +1,7 @@
 import 'package:cinematic_clone/src/bloc/home_bloc.dart';
 import 'package:cinematic_clone/src/repository/movie_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'movie_list.dart';
 
@@ -12,7 +13,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   PageController _pageController;
   int _page = 0;
-  HomeBloc _homeBloc = HomeBloc(MovieRepository());
+  HomeBloc _homeBloc;
 
   @override
   Widget build(BuildContext context) {
@@ -70,6 +71,12 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     _pageController = PageController();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _homeBloc = Provider.of<HomeBloc>(context);
   }
 
   @override

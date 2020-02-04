@@ -1,3 +1,6 @@
+import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 final String _imageUrlLarge = "https://image.tmdb.org/t/p/w500/";
 final String _imageUrlMedium = "https://image.tmdb.org/t/p/w300/";
 
@@ -6,6 +9,10 @@ String getMediumPictureUrl(String path) => _imageUrlMedium + path;
 String getLargePictureUrl(String path) => _imageUrlLarge + path;
 
 enum LoadingState { DONE, LOADING, WAITING, ERROR }
+
+final dollarFormat = NumberFormat("#,##0.00", "en_US");
+final sourceFormat = DateFormat('yyyy-MM-dd');
+final dateFormat = DateFormat.yMMMMd("en_US");
 
 Map<int, String> _genreMap = {
   28: 'Action',
@@ -45,3 +52,37 @@ String getGenreString(List<int> genreIds) {
   buffer.writeAll(getGenresForIds(genreIds), ", ");
   return buffer.toString();
 }
+
+String concatListToString(List<dynamic> data, String mapKey) {
+  StringBuffer buffer = StringBuffer();
+  buffer.writeAll(data.map<String>((map) => map[mapKey]).toList(), ", ");
+  return buffer.toString();
+}
+
+String formatSeasonsAndEpisodes(int numberOfSeasons, int numberOfEpisodes) =>
+    '$numberOfSeasons Seasons and $numberOfEpisodes Episodes';
+
+String formatNumberToDollars(int amount) => '\$${dollarFormat.format(amount)}';
+
+String formatDate(String date) {
+  try {
+    return dateFormat.format(sourceFormat.parse(date));
+  } catch (Exception) {
+    return "";
+  }
+}
+
+String formatRuntime(int runtime) {
+  int hours = runtime ~/ 60;
+  int minutes = runtime % 60;
+
+  return '$hours\h $minutes\m';
+}
+
+launchUrl(String url) async {
+  if (await canLaunch(url)) {
+    await launch(url);
+  }
+}
+
+String getImdbUrl(String imdbId) => 'http://www.imdb.com/title/$imdbId';
