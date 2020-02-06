@@ -70,4 +70,22 @@ class ApiClient {
       return _decoder.convert(response.body);
     }
   }
+
+  Future<List<Movie>> getMoviesForActor(int actorId) async {
+    var url = Uri.https(baseUrl, '3/discover/movie', {
+      'api_key': API_KEY,
+      'with_cast': actorId.toString(),
+      'sort_by': 'popularity.desc'
+    });
+
+    var response = await http.get(url);
+    if (response.statusCode != 200 || response == null) {
+      throw new HttpException(
+          "get movies of actor $actorId false, status code: ${response.statusCode}");
+    } else {
+      print(response);
+      final movieItems = _decoder.convert(response.body)['results'] as List;
+      return movieItems.map((movieMap) => Movie.fromMap(movieMap)).toList();
+    }
+  }
 }

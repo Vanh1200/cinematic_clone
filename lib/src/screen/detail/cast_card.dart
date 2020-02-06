@@ -1,5 +1,6 @@
 import 'package:cinematic_clone/src/customview/bottom_gradient.dart';
 import 'package:cinematic_clone/src/model/cast.dart';
+import 'package:cinematic_clone/src/utils/navigator.dart';
 import 'package:cinematic_clone/src/utils/styles.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +14,7 @@ class CastCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-//      onTap: () => goToActorDetails(context, actor),
+      onTap: () => goToActorDetails(context, actor),
       child: Container(
         height: height,
         width: width,

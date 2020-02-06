@@ -4,7 +4,6 @@ import 'dart:math';
 import 'package:cinematic_clone/src/bloc/movie_detail_bloc.dart';
 import 'package:cinematic_clone/src/customview/bottom_gradient.dart';
 import 'package:cinematic_clone/src/customview/text_bubble.dart';
-import 'package:cinematic_clone/src/model/cast.dart';
 import 'package:cinematic_clone/src/model/movie.dart';
 import 'package:cinematic_clone/src/repository/movie_repository.dart';
 import 'package:cinematic_clone/src/screen/detail/similar_section.dart';

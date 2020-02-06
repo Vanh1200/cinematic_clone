@@ -10,6 +10,8 @@ abstract class MovieRemoteDataSource {
   Future<dynamic> loadMovieDetail(String id);
 
   Future<List<Actor>> loadMovieCredits(String id);
+
+  Future<List<Movie>> loadMoviesOfActor(String id);
 }
 
 class MovieRepository implements MovieRemoteDataSource {
@@ -35,5 +37,10 @@ class MovieRepository implements MovieRemoteDataSource {
   @override
   Future<List<Movie>> loadSimilarMovies(String id) {
     return _apiClient.getSimilarMedia(int.parse(id));
+  }
+
+  @override
+  Future<List<Movie>> loadMoviesOfActor(String id) {
+    return _apiClient.getMoviesForActor(int.parse(id));
   }
 }
