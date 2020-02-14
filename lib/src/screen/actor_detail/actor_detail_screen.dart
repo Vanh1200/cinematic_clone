@@ -1,6 +1,5 @@
 import 'package:cinematic_clone/src/bloc/actor_detail_bloc.dart';
 import 'package:cinematic_clone/src/model/cast.dart';
-import 'package:cinematic_clone/src/model/movie.dart';
 import 'package:cinematic_clone/src/repository/movie_repository.dart';
 import 'package:cinematic_clone/src/screen/home/movie_list_item.dart';
 import 'package:cinematic_clone/src/utils/fitted_circle_avatar.dart';
@@ -10,16 +9,14 @@ import 'package:flutter/material.dart';
 class ActorDetailScreen extends StatelessWidget {
   final Actor _actor;
   ActorDetailBloc _actorDetailBloc;
-  ActorDetailBloc _actorDetailBloc2;
 
   ActorDetailScreen(this._actor);
 
   @override
   Widget build(BuildContext context) {
     _actorDetailBloc = ActorDetailBloc(MovieRepository());
-    _actorDetailBloc2 = ActorDetailBloc(MovieRepository());
     _actorDetailBloc.getMoviesOfActor(_actor.id.toString());
-    _actorDetailBloc2.getMoviesOfActor2(_actor.id.toString());
+    _actorDetailBloc.getMoviesOfActor2(_actor.id.toString());
 
     return DefaultTabController(
       length: 2,
@@ -95,40 +92,38 @@ class ActorDetailScreen extends StatelessWidget {
   }
 
   Widget _buildMoviesSection() {
-      return StreamBuilder (
-        stream: _actorDetailBloc.moviesOfActorStream,
-        builder: (context, snapshot) {
-          return snapshot.hasData
-              ? ListView.builder(
-                  itemBuilder: (BuildContext context, int index) =>
-                      MovieListItem(snapshot.data[index]),
-                  itemCount: snapshot.data.length,
-                )
-              : Padding(
-                  padding: const EdgeInsets.all(32.0),
-                  child: Center(child: CircularProgressIndicator()),
-                );
-        },
-      );
-  }
-
-  Widget _buildMoviesSection2() {
-    return StreamBuilder (
-      stream: _actorDetailBloc.moviesOfActorStream2,
+    return StreamBuilder(
+      stream: _actorDetailBloc.moviesOfActorStream,
       builder: (context, snapshot) {
         return snapshot.hasData
             ? ListView.builder(
-          itemBuilder: (BuildContext context, int index) =>
-              MovieListItem(snapshot.data[index]),
-          itemCount: snapshot.data.length,
-        )
+                itemBuilder: (BuildContext context, int index) =>
+                    MovieListItem(snapshot.data[index]),
+                itemCount: snapshot.data.length,
+              )
             : Padding(
-          padding: const EdgeInsets.all(32.0),
-          child: Center(child: CircularProgressIndicator()),
-        );
+                padding: const EdgeInsets.all(32.0),
+                child: Center(child: CircularProgressIndicator()),
+              );
       },
     );
   }
 
-
+  Widget _buildMoviesSection2() {
+    return StreamBuilder(
+      stream: _actorDetailBloc.moviesOfActorStream2,
+      builder: (context, snapshot) {
+        return snapshot.hasData
+            ? ListView.builder(
+                itemBuilder: (BuildContext context, int index) =>
+                    MovieListItem(snapshot.data[index]),
+                itemCount: snapshot.data.length,
+              )
+            : Padding(
+                padding: const EdgeInsets.all(32.0),
+                child: Center(child: CircularProgressIndicator()),
+              );
+      },
+    );
+  }
 }
